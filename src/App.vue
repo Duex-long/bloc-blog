@@ -1,14 +1,29 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <NavBar/>
     <router-view/>
   </div>
 </template>
-
+  <script>
+import 'bootstrap/dist/css/bootstrap.min.css'  
+import 'bootstrap-icons/font/bootstrap-icons.css'
+import NavBar from './components/NavMenu/NavBar'
+export default {
+  name:'App',
+  components:{
+        NavBar
+      }
+    }  
+    </script>
 <style>
+*{
+  margin: 0;
+  padding: 0;
+}
+
+i{
+  cursor:pointer
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -16,17 +31,9 @@
   text-align: center;
   color: #2c3e50;
 }
-
-#nav {
-  padding: 30px;
+canvas{
+  width: 100%;
+  height: 100%;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
