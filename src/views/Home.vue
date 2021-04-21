@@ -58,11 +58,14 @@ export default {
   components: {
   },
   methods: {
-    copyCode(e){
-     let par = e.currentTarget.parentElement
-    //  console.log(e.currentTarget)
-      console.log(par)
+    async testAxios(){
+      await this.$http.get('/').then(res=>{
+        console.log(res.data)
+      })
     }
+  },
+  mounted() {
+    this.testAxios()
   },
 }
 </script>

@@ -17,6 +17,19 @@ const routes = [
     component:()=>import("@/views/NotFound404.vue")
   },
   {
+    path:'/document',
+    name:'Document',
+    component:()=>import("@/views/Document.vue"),
+    children:[
+      {
+        path:'/text',
+        component:()=>import("@/components/SideComponents/Test.vue"),
+        linkActiveClass: 'active'
+      }
+      
+    ]
+  },
+  {
     path:'*',
     redirect:'/notfound'
   }
