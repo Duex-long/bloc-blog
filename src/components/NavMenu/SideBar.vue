@@ -4,14 +4,15 @@
           <input placeholder="Search.." type="text" name="" id="">
       </div>
       <div class="sidebar-collapse">
-          <ul @click="openLi" class="collapse-ul" v-for="(item,index) in sideList" :key="item.index" >
+          <!-- <ul @click="openLi" class="collapse-ul" v-for="(item,index) in sideList" :key="item.index" >
               <span><router-link to="/text" > {{item.title}} </router-link></span>
-              <li  id="string" :class="{active:isOpen}" v-for="(li,index) in item.children" :key="li.index">
-                  <router-link :to="li.title"> {{li.title}} </router-link>
-              </li>
-              <blade></blade>
-              <!-- <li v-for="(li,index) in childrenList" :key="li.title"></li> -->
-          </ul>
+             
+          </ul> -->
+           <blade  v-for="(item,index) in sideList" :key="item.index" :childList="item.children" :currentIndex="item.index" > 
+             <template #slotTitle>
+                 <router-link :to="item.route">{{item.title}}</router-link>
+            </template> 
+            </blade>
       </div>
   </div>
 </template>
@@ -24,7 +25,6 @@ export default {
     data(){
         return{
             sideList : [],
-            isOpen:true
         }
     },
     methods: {
@@ -36,13 +36,14 @@ export default {
                 }
             })
         },
-        openLi(e){
-            this.isOpen = !this.isOpen
-            console.log(this.isOpen, e.currentTarget)
+        msg(e){
+            console.log(e.target)
         }
+        
     },
     mounted() {
         this.getSideList()
+        // this.isOpen = true
     },
 }
 </script>
@@ -50,19 +51,23 @@ export default {
 <style>
     .sidebar{
         min-width: 250px;
-        padding: 0px 10px 0px 0px;
+        height: 100%;
+        padding: 0PX;
+        border-right: 1px solid rgb(224, 223, 223);
+
     }
     .sidebar-input{
-        padding: 10px 10px 10px 20px;
-        border-bottom: 1px solid #ccc;
-        border-right: 1px solid #ccc;
+        padding: 6px 6px 6px 6px;
+        border-bottom: 1px solid rgb(240, 239, 239);
+        /* border-right: 1px solid #ccc; */
     }
     .sidebar-input input{
         text-indent: 1em;
-        margin-bottom: 10px;
-        margin-right:10px ;
-        line-height: 35px;
-        border-radius: 3px;
+        margin-top:6px ;
+        margin-bottom: 6px;
+        /* line-height: 35px; */
+        height: 35px;
+        border-radius: 5px;
         border:1px solid rgb(214, 214, 214);
         transition: all .5s ease ;
     }
@@ -75,43 +80,7 @@ export default {
     }
     .sidebar-collapse{
         padding-top:20px ;
-        border-right: 1px solid #ccc;
-    }
-    .collapse-ul{
-        margin-left: 20px;
-        list-style: none;
-        text-align: left;
-        /* height: 36px; */
-        /* overflow: hidden; */
-        
-        /* line-height: 20px; */
-    }
-    .collapse-ul span{
-        font-size: 18px;
-        line-height: 36px;
-        font-weight: bold;
-        cursor: pointer;
-    }
-    .collapse-ul span a{
-        text-decoration: none;
-        color: rgb(29, 28, 28);
     }
     
-    .collapse-ul li{
-        color: rgb(70, 70, 70);
-        line-height: 36px;
-        cursor: pointer;
-        /* height: 36px; */
-    }
-    .collapse-ul li a:hover{
-        color: #000;
-    }
-    .collapse-ul li a{
-        text-decoration: none;
-        color: rgb(70, 70, 70);
-    }
-
-    .active{
-        display: none;
-    }
+    
 </style>

@@ -24,7 +24,11 @@ const routes = [
       {
         path:'/text',
         component:()=>import("@/components/SideComponents/Test.vue"),
-        linkActiveClass: 'active'
+        
+      },
+      {
+        path:'/design',
+        component:()=>import("@/components/SideComponents/Design.vue"),
       }
       
     ]

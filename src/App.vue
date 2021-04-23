@@ -20,6 +20,12 @@ export default {
   margin: 0;
   padding: 0;
 }
+html{
+  height: 100%
+}
+body{
+  height: 100%;
+}
 
 i{
   cursor:pointer
@@ -30,6 +36,7 @@ i{
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  height: 100%;
 }
 canvas{
   width: 100%;

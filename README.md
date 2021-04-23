@@ -17,3 +17,7 @@ npm run build
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+#刷新后导航栏状态失效
+#切换sidebar时其他sideBar没有被收起
