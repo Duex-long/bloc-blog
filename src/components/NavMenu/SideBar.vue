@@ -1,20 +1,18 @@
 <template>
-  <div class="sidebar">
+    <div class="sidebar-fixed">
+        <div class="sidebar">
       <div class="sidebar-input">
           <input placeholder="Search.." type="text" name="" id="">
       </div>
       <div class="sidebar-collapse">
-          <!-- <ul @click="openLi" class="collapse-ul" v-for="(item,index) in sideList" :key="item.index" >
-              <span><router-link to="/text" > {{item.title}} </router-link></span>
-             
-          </ul> -->
-           <blade  v-for="(item,index) in sideList" :key="item.index" :childList="item.children" :currentIndex="item.index" > 
+           <blade  v-for="item in sideList" :key="item.id" :childList="item.children" :currentIndex="item.id" :toPath="item.route" > 
              <template #slotTitle>
-                 <router-link :to="item.route">{{item.title}}</router-link>
+                 {{item.title}}
             </template> 
             </blade>
       </div>
   </div>
+    </div>
 </template>
 
 <script>
@@ -49,11 +47,16 @@ export default {
 </script>
 
 <style>
+    .sidebar-fixed{
+        height: 100%;
+        min-width: 250px;
+    }
     .sidebar{
         min-width: 250px;
         height: 100%;
         padding: 0PX;
         border-right: 1px solid rgb(224, 223, 223);
+        position: fixed;
 
     }
     .sidebar-input{
@@ -75,11 +78,13 @@ export default {
         outline: none;
         /* box-shadow: 2px 2px 2px #4fc08d; */
         border:1px solid #4fc08d;
-        box-shadow: 0 0 5px #4fc08d;
+        box-shadow: 0 0 10px #4fc08d;
         transition: all .5s ease ;
     }
     .sidebar-collapse{
-        padding-top:20px ;
+        padding-top:20px;
+        /* position: sticky; */
+        
     }
     
     

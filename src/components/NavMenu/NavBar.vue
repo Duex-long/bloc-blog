@@ -1,18 +1,18 @@
 <template>
-    <div class="NavBar">
-
+    <div class="navbar-fixed">
+        <div class="NavBar">
         <div class="nav-box">
             <div class="nav-icon"> <i class="bi-github" style="font-size: 32px; cursor:pointer;" role="img" aria-label="GitHub"></i></div>
         </div>
         <div class="nav-link">
-            <div>  <router-link to="/">首页</router-link></div>
-            <div>  <router-link to="/document">文档</router-link></div>
-            <div>  <router-link to="/resource">资源</router-link></div>
-            <div>  <router-link to="/template">模板</router-link></div>
-            <div>  <router-link to="/choice">精选</router-link></div>
-            <div>  <router-link to="/support">支持</router-link></div>
+            <div>  <router-link  to="/"   active-class="router-link-active" exact >首页</router-link></div>
+            <div>  <router-link  to="/document" active-class="router-link-active"  >文档</router-link></div>
+            <div>  <router-link  to="/resource"  active-class="router-link-active"  >资源</router-link></div>
+            <div>  <router-link  to="/template"  active-class="router-link-active"  >模板</router-link></div>
+            <div>  <router-link  to="/choice"  active-class="router-link-active"  >精选</router-link></div>
+            <div>  <router-link  to="/support"  active-class="router-link-active"  >支持</router-link></div>
             <div> <a href="https://cn.vuejs.org/">Vue</a> </div>
-            <div> <a href="https://v4.bootcss.com/">Bootstrap</a> </div>
+            <div> <a href="https://icons.bootcss.com/">Bootstrap-Icon</a> </div>
         </div>
         <div class="nav-right-link">
             <i class="bi-github" role="img" aria-label="GitHub"></i>
@@ -20,6 +20,7 @@
             <i class="bi bi-lightbulb"></i>
             <button class="nav-right-btn">Pay (:</button>
         </div>
+    </div>
     </div>
 </template>
 
@@ -38,25 +39,28 @@ export default {
     },
     mounted() {
        let linkList = this.getLinkList()
-       document.addEventListener("click",(e)=>{
-           if(!linkList.includes(e.target))
-           {
-               return
-           }else{
-               for(let i = 0; i < linkList.length; i++){
-                   if(linkList[i] == e.target){
-                       e.target.style = "color:#fff"
-                   }else{
-                       linkList[i].style = "color:rgb(97, 97, 97)"
-                   }
-               }
-           }
-       })
+    //    document.addEventListener("click",(e)=>{
+    //        if(!linkList.includes(e.target))
+    //        {
+    //            return
+    //        }else{
+    //            for(let i = 0; i < linkList.length; i++){
+    //                if(linkList[i] == e.target){
+    //                    e.target.style = "color:#fff"
+    //                }else{
+    //                    linkList[i].style = "color:rgb(97, 97, 97)"
+    //                }
+    //            }
+    //        }
+    //    })
     },
 }
 </script>
 
-<style>
+<style scoped>
+    .navbar-fixed{
+        height: 60px;
+    }
     .NavBar{
         min-width: 870px;
         width: 100%;
@@ -66,6 +70,9 @@ export default {
         display: flex;
         overflow: hidden;
         background: #4fc08d;
+        position: fixed;
+        /* z-index: 1; */
+        /* overflow: auto; */
     }
     .nav-box{
         margin-left: 40px ;
@@ -121,6 +128,12 @@ export default {
         animation: deg 1.5s ;
         transition: all 1.5s ease;
 
+    }
+
+    .router-link-active{
+        
+        font-weight: bolder;
+        /* color: #fff; */
     }
 
     @keyframes deg {

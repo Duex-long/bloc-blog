@@ -2,12 +2,16 @@
     <div class="blade">
         <!-- #通过slot控制下面blade—item的display -->
         <div class="blade-slot" @click="switchOn">
-            <slot  name="slotTitle"> Default Solt </slot>
-            <i v-if="!trunOver" class="bi bi-caret-left"></i>
-            <i v-else class="bi bi-caret-down"></i>
+            <router-link :to="this.newPath">   
+                <slot  name="slotTitle"> Default Solt </slot>
+                <i v-if="!trunOver" class="bi bi-caret-left"></i>
+                <i v-else class="bi bi-caret-down"></i>
+            </router-link>
         </div>
         
-        <blade-item v-for="(li,index) in childList" :key="li.index" :isOpen="trunOver" >
+        <blade-item v-for="li in childList" :key="li.cid" :isOpen="trunOver" 
+            :childToPath="li.route"
+        >
             <template #bladeItem>
                 <div>{{li.title}}</div>                 
             </template>
@@ -17,32 +21,54 @@
 
 <script>
 import BladeItem from './Blade-Item.vue'
+import {mapState, mapMutations} from 'vuex'
 export default {
   components: { BladeItem },
     data(){
         return{
-            // 控制子元素展开
-            trunOver:false
+            trunOver:false ,//控制控件展开
+            newPath:''
         }
     },
     props:{
         childList:{
-            // type:Array,
             default:''
         },
         currentIndex:{
-           type:Number,
-            
+           type:String,
+        },
+        toPath:{
+            required:true,
+            // type:String
         }
     },
-
     methods:{
+        ...mapMutations(['currentChange']),
         switchOn(){
-            this.trunOver = !this.trunOver
+            this.trunOver = true
+            this.currentChange(this.currentIndex)
         },
+        updatePath(){
+            this.newPath = "/document" + this.toPath
+        }
     },
     mounted(){
-        console.log(this.currentIndex)
+        console.log(this.currentIndex,this.current)
+        if(this.currentIndex == this.current){
+            this.trunOver = true
+        }
+        this.updatePath()
+    },  
+    computed:{
+        ...mapState(['current']),
+    },
+    watch:{
+        current:function(){
+            // 箭头函数无法获取this 
+            if(this.currentIndex !== this.current){
+            this.trunOver = false
+            }
+        }
     }
 }
 </script>
@@ -57,6 +83,9 @@ export default {
     .blade-slot a{
         text-decoration: none;
         color: unset;
+        display: block;
+        /* width: 200px; */
+        /* display: inline-block; */
     }
     .blade-slot{
         display: block;

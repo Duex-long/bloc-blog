@@ -61,7 +61,7 @@ export default {
     async testAxios(){
       await this.$http.get('/').then(res=>{
         console.log(res.data)
-      })
+      }).catch(err=>console.log(err))
     }
   },
   mounted() {
@@ -72,6 +72,7 @@ export default {
 
 <style scoped>
   .home{
+    /* margin-top: 60px; */
     background: transparent;
     display: flex;
     padding-top:40px;

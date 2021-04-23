@@ -8,6 +8,10 @@ export default new Vuex.Store({
       current : 0
   },
   mutations: {
+      currentChange(state,prop){
+        // console.log(state.current,"store",prop)
+          return state.current = prop
+      }
   },
   actions: {
   },

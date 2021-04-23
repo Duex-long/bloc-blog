@@ -20,18 +20,20 @@ const routes = [
     path:'/document',
     name:'Document',
     component:()=>import("@/views/Document.vue"),
+    
     children:[
       {
-        path:'/text',
+        path:'/document/text',
         component:()=>import("@/components/SideComponents/Test.vue"),
         
       },
       {
-        path:'/design',
+        path:'/document/design',
         component:()=>import("@/components/SideComponents/Design.vue"),
       }
       
-    ]
+    ],
+    redirect:'/document/text',
   },
   {
     path:'*',
@@ -42,7 +44,7 @@ const routes = [
 
 const router = new VueRouter({
   routes,
-  history
+  mode:'history'
 })
 
 export default router
